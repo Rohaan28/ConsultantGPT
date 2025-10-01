@@ -3,7 +3,7 @@ from langchain_community.chat_models import ChatOpenAI
 
 def run_architect_agent(technical_tasks: str, cloud_stack: list, tools_stack: list, api_key: str):
     # ✅ Define LLM with user-provided API key
-    llm = ChatOpenAI(temperature=0.4, model_name="gpt-3.5-turbo", openai_api_key=api_key)
+    llm = ChatOpenAI(temperature=0.4, model_name="gpt-4o", openai_api_key=api_key)
 
     # ✅ Architect Agent using dynamic LLM
     architect = Agent(

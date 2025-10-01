@@ -1,70 +1,131 @@
-ConsultantGPT – Project Documentation
+# ConsultantGPT
 
-1. Overview
-ConsultantGPT is a Streamlit-based AI assistant designed to help Data & AI interns or professionals break down business use cases into actionable technical tasks, suggest solution architectures, generate developer code modules, and recommend contextual learning resources. It leverages OpenAI's API (via LiteLLM and CrewAI) to produce outputs.
+An AI-powered Streamlit app to help Data & AI interns (and pros) turn business use cases into:  
+- actionable **technical task plans**  
+- **solution architectures**  
+- **developer code modules**  
+- tailored **learning resources**  
 
-2. Project Structure
-The repository is organized into the following files and folders:
+Powered by OpenAI (via LiteLLM & CrewAI).  
 
+---
+
+## 1) Overview  
+ConsultantGPT lets you describe a use case in plain English and then:  
+1. Produces a technical task breakdown.  
+2. Suggests a cloud/tooling architecture.  
+3. Generates modular starter code.  
+4. Recommends learning resources based on the chosen stack.  
+
+---
+
+## 2) Project Structure  
+
+```text
 ConsultantGPT/
 │
-├── app.py                   # Main Streamlit app entry point
-├── modules/
-│   ├── planner.py           # Generates technical tasks from a business use case
-│   ├── architecture.py      # Internal architecture logic
-│   ├── learning.py          # Suggests learning resources based on architecture
-│   └── agents/
-│       ├── architect_agent.py  # Wraps CrewAI/LLM call to generate architecture
-│       └── developer_agent.py  # Wraps CrewAI/LLM call to generate developer code
+├─ app.py                         # Main Streamlit app
+├─ modules/
+│  ├─ planner.py                  # Generates technical tasks from a business use case
+│  ├─ architecture.py             # Architecture helper logic
+│  ├─ learning.py                 # Learning resources recommender
+│  └─ agents/
+│     ├─ architect_agent.py       # CrewAI-based architecture agent
+│     └─ developer_agent.py       # CrewAI-based developer/code agent
 │
-├── .env                     # Stores API keys (not committed, add locally)
-├── .gitignore               # Ensures .env and venv folders are ignored
-└── README.md                # Documentation file (this)
+├─ .env                           # Local secrets (NOT committed)
+├─ .gitignore                     # Ignores .env, venv, etc.
+└─ README.md                      # This file
+```
 
-3. Requirements
-• Python 3.11 or above
-• A virtual environment (venv or consult)
-• Install dependencies using:
+---
 
+## 3) Requirements  
+
+- Python **3.11+**  
+- Virtual environment (`venv`, `.consult`, etc.)  
+
+Install dependencies:  
+
+```bash
 pip install -r requirements.txt
-Example requirements.txt:
+```
+
+Example `requirements.txt`:
+
+```text
 streamlit
 python-dotenv
 crewai
 litellm
 openai
+```
 
-4. Configuration
-4.1. Create a .env file in the project root with the following content:
+---
 
+## 4) Configuration  
+
+Create a `.env` file in the project root (do **not** commit this):  
+
+```env
 OPENAI_API_KEY=your_api_key_here
 CREWAI_TRACING_ENABLED=true
+```
 
-4.2. Do not commit .env — it’s listed in .gitignore.
+The app loads `.env` automatically for local development.  
+If no key is present, you can also paste your key into **Tab 1** inside the app.
 
-3.3. The app automatically loads your .env file for local development. If no key is present, you can also input the key at runtime in the UI.
+---
 
-5. Running the App
-Activate your environment:
-source consult/bin/activate   # or .venv depending on your setup
+## 5) Running the App  
 
-Run Streamlit:
+Activate your environment (example):  
+
+```bash
+# macOS/Linux
+source consult/bin/activate
+
+# Windows PowerShell
+.\consult\Scripts\Activate
+```
+
+Start Streamlit:  
+
+```bash
 streamlit run app.py
+```
 
-Open the app in your browser. Streamlit displays the link in your console.
+Open the link displayed in your terminal to launch the app in your browser.
 
-6. How to Use
-• Tab 1 – Use Case Planner: Enter a business use case and your OpenAI API key (if not in .env). Click 'Generate Technical Tasks'.
-• Tab 2 – Architecture Designer: Select cloud providers and tools, then click 'Generate Architecture' to call the Architect Agent.
-• Tab 3 – Developer Agent: Generate modular code based on your tasks and architecture.
-• Tab 4 – Learning Resources: Get recommended learning content based on your generated architecture.
+---
 
-7. Contributing
-• Fork the repository.
-• Make changes in a feature branch.
-• Open a pull request.
+## 6) How to Use  
 
-Never commit secrets — .env and API keys must stay local.
+**Tab 1 – Use Case Planner**  
+Describe your business use case and (optionally) provide your OpenAI API key. Click **Generate Technical Tasks**.
 
-8. License
-You may use MIT License or any other license as per your preference.
+**Tab 2 – Architecture Designer**  
+Pick cloud(s) and tools, then click **Generate Architecture** to call the Architect Agent.
+
+**Tab 3 – Developer Agent**  
+Generate modular starter code based on the tasks + architecture.
+
+**Tab 4 – Learning Resources**  
+Get learning resources relevant to the proposed architecture and tools.
+
+---
+
+## 7) Contributing  
+
+1. Fork the repository  
+2. Create a feature branch  
+3. Commit your changes  
+4. Open a pull request  
+
+**Never commit secrets** — keep `.env` local.
+
+---
+
+## 8) License  
+
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
